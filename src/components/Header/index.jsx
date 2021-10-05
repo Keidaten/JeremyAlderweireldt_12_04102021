@@ -16,7 +16,7 @@ const TopNavBar = styled.header`
 	padding-left: 26px;
 `;
 
-const TopNav = styled.nav`
+const TopNavLinks = styled.nav`
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
@@ -31,12 +31,12 @@ function Header() {
 			<Link to="/">
 				<img src={logo} className="App-logo" alt="logo" />
 			</Link>
-			<TopNav>
+			<TopNavLinks>
 				<NavLink to="/">Accueil</NavLink>
 				<NavLink to="/">Profil</NavLink>
 				<NavLink to="/">Réglages</NavLink>
 				<NavLink to="/">Communauté</NavLink>
-			</TopNav>
+			</TopNavLinks>
 		</TopNavBar>
 	);
 }

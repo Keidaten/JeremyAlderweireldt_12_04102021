@@ -1,8 +1,5 @@
-//Components
-import Header from '../../components/Header';
-
 function Home() {
-	return <Header />;
+	return '';
 }
 
 export default Home;
