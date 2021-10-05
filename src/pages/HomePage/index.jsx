@@ -1,15 +1,8 @@
-//Assets
-import logo from '../../assets/logo.svg';
+//Components
+import Header from '../../components/Header';
 
 function Home() {
-	return (
-		<main>
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-			</header>
-			<h1>Title</h1>
-		</main>
-	);
+	return <Header />;
 }
 
 export default Home;

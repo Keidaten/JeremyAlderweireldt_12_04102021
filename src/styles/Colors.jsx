@@ -1,7 +1,9 @@
 const colors = {
-	primaryColor: '#282D30',
-	secondaryColor: '#E60000',
-	backgroundColor: '#E5E5E5',
+	navsBackgroundColor: '#020203',
+	graphPrimary: '#282D30',
+	graphSecondary: '#FF0000',
+	graphBarsColor: '#E60000',
+	bodyBackgroundColor: '#E5E5E5',
 	white: '#FFFFFF',
 	black: '#000000',
 };
