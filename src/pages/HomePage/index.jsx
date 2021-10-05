@@ -1,5 +1,12 @@
+//Components
+import MainTitle from '../../components/MainTitle';
+
 function Home() {
-	return '';
+	return (
+		<main>
+			<MainTitle />
+		</main>
+	);
 }
 
 export default Home;

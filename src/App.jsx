@@ -14,12 +14,12 @@ function App() {
 		<Router>
 			<GlobalStyle />
 			<Header />
+			<LeftNav />
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
 				</Route>
 			</Switch>
-			<LeftNav />
 		</Router>
 	);
 }

@@ -61,9 +61,14 @@ table {
 	box-sizing: border-box;
 }
 
+//Global
 body {
-    font-family: 'Roboto', sans-serif;;
+    font-family: 'Roboto', sans-serif;
 }
+main {
+	margin-left: 117px;
+}
+
 `;
 
 export default GlobalStyle;
