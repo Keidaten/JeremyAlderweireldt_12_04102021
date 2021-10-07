@@ -67,6 +67,7 @@ body {
 }
 main {
 	margin-left: 117px;
+	padding : 68px 90px 86px 107px;
 }
 
 `;

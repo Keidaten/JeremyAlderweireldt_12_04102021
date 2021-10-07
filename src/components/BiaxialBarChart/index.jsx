@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
 import styled from 'styled-components';
+
+//Styles
+import colors from '../../styles/Colors';
 
 const data = [
 	{
@@ -50,12 +52,25 @@ const data = [
 
 const WeightWidget = styled.div`
 	height: 320px;
+	background-color: ${colors.widgetsBackgroundColor};
+`;
+
+const WeightWidgetHeading = styled.div`
+	display: flex;
+	justify-content: space-between;
 `;
 
 class BiaxialBarChart extends PureComponent {
 	render() {
 		return (
 			<WeightWidget>
+				<WeightWidgetHeading>
+					<span>Activité quotidienne</span>
+					<div>
+						<span>Poids (kg)</span>
+						<span>Calories brûlées (kCal)</span>
+					</div>
+				</WeightWidgetHeading>
 				<ResponsiveContainer width="100%" height="100%">
 					<BarChart
 						width={500}
@@ -63,8 +78,8 @@ class BiaxialBarChart extends PureComponent {
 						data={data}
 						margin={{
 							top: 20,
-							right: 30,
-							left: 20,
+							right: 0,
+							left: 0,
 							bottom: 5,
 						}}
 					>

@@ -16,9 +16,7 @@ function App() {
 			<Header />
 			<LeftNav />
 			<Switch>
-				<Route exact path="/">
-					<HomePage />
-				</Route>
+				<Route exact path="/:id" component={HomePage}></Route>
 			</Switch>
 		</Router>
 	);

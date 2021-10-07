@@ -6,6 +6,7 @@ import meditationIcon from '../../assets/meditationIcon.png';
 import swimIcon from '../../assets/swimIcon.png';
 import cyclingIcon from '../../assets/cyclingIcon.png';
 import dumbellIcon from '../../assets/dumbellIcon.png';
+
 //Style
 import colors from '../../styles/Colors';
 
