@@ -22,7 +22,7 @@ const Title = styled.div`
 `;
 
 const Name = styled.span`
-	color: ${colors.mainTitleName};
+	color: ${colors.mainTitleNameColor};
 `;
 
 function MainTitle() {
@@ -32,7 +32,7 @@ function MainTitle() {
 	useEffect(() => {
 		getUser(idParams).then((response) => {
 			setUser(response.data.userInfos);
-			console.log(response.data.userInfos.firstName);
+			// console.log(response.data.userInfos.firstName);
 		});
 	}, [idParams]);
 

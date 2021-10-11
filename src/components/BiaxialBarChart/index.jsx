@@ -1,101 +1,136 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
+import { useParams } from 'react-router';
 
 //Styles
 import colors from '../../styles/Colors';
 
-const data = [
-	{
-		name: 'Page A',
-		uv: 4000,
-		pv: 2400,
-		amt: 2400,
-	},
-	{
-		name: 'Page B',
-		uv: 3000,
-		pv: 1398,
-		amt: 2210,
-	},
-	{
-		name: 'Page C',
-		uv: 2000,
-		pv: 9800,
-		amt: 2290,
-	},
-	{
-		name: 'Page D',
-		uv: 2780,
-		pv: 3908,
-		amt: 2000,
-	},
-	{
-		name: 'Page E',
-		uv: 1890,
-		pv: 4800,
-		amt: 2181,
-	},
-	{
-		name: 'Page F',
-		uv: 2390,
-		pv: 3800,
-		amt: 2500,
-	},
-	{
-		name: 'Page G',
-		uv: 3490,
-		pv: 4300,
-		amt: 2100,
-	},
-];
+//Services
+import getUserActivity from '../../services/activity.js';
 
+function BiaxialBarChart() {
+	const idParams = useParams().id;
+	const [activity, setActivity] = useState();
+
+	useEffect(() => {
+		getUserActivity(idParams).then((response) => {
+			setActivity(response.data.sessions);
+		});
+	}, [idParams]);
+
+	const CustomTooltip = ({ active, payload, label }) => {
+		if (active && payload && payload.length) {
+			return (
+				<ToolTipContainer>
+					<p>{`${payload[0].value}Kg`}</p>
+					<p>{`${payload[1].value}Kcal`}</p>
+				</ToolTipContainer>
+			);
+		}
+
+		return null;
+	};
+
+	const formatXAxis = (tick) => {
+		tick = tick.toString();
+		tick = tick.slice(8);
+
+		return tick;
+	};
+
+	return (
+		<WeightWidget>
+			<WeightWidgetHeading>
+				<span>Activité quotidienne</span>
+				<Legend>
+					<div>
+						<LegendDot color={colors.biaxialGraphBarsColor2}></LegendDot>
+						<span>Poids (kg)</span>
+					</div>
+					<div>
+						<LegendDot color={colors.biaxialGraphBarsColor}></LegendDot>
+						<span>Calories brûlées (kCal)</span>
+					</div>
+				</Legend>
+			</WeightWidgetHeading>
+			<ResponsiveContainer width="100%" height="69.55%">
+				<BarChart
+					barGap={8}
+					data={activity}
+					margin={{
+						top: 20,
+						right: 0,
+						left: 0,
+						bottom: 5,
+					}}
+				>
+					<CartesianGrid strokeDasharray="3 3" vertical={false} />
+					<XAxis dy={15} dataKey="day" tickFormatter={formatXAxis} tickLine={false} tick={{ fontSize: 14 }} />
+					<YAxis dx={30} yAxisId="kilogram" orientation="right" tick={{ fontSize: 14 }} tickLine={false} axisLine={false} tickCount="3" domain={['dataMin-4', 'dataMax+1']} />
+					<YAxis yAxisId="calories" hide={true} domain={[0, 'dataMax +100']} />
+					<Tooltip separator="" content={<CustomTooltip />} />
+					{/* <Legend wrapperStyle={{ top: -16, fontSize: 14, color: colors.widgetsTextColor }} margin="500px" iconType="circle" verticalAlign="top" align="right" /> */}
+					<Bar barSize={7} radius={[50, 50, 0, 0]} name="Poids (kg)" yAxisId="kilogram" dataKey="kilogram" fill={colors.biaxialGraphBarsColor} />
+					<Bar barSize={7} radius={[50, 50, 0, 0]} name="Calories brûlées (kCal)" yAxisId="calories" dataKey="calories" fill={colors.biaxialGraphBarsColor2} />
+				</BarChart>
+			</ResponsiveContainer>
+		</WeightWidget>
+	);
+}
+
+//Style
 const WeightWidget = styled.div`
 	height: 320px;
+	border-radius: 5px;
 	background-color: ${colors.widgetsBackgroundColor};
+	font-size: 15px;
+	padding: 24px 29px 25px 32px;
 `;
 
 const WeightWidgetHeading = styled.div`
+	margin-bottom: 50px;
 	display: flex;
 	justify-content: space-between;
+	> span {
+		font-weight: 600;
+	}
 `;
 
-class BiaxialBarChart extends PureComponent {
-	render() {
-		return (
-			<WeightWidget>
-				<WeightWidgetHeading>
-					<span>Activité quotidienne</span>
-					<div>
-						<span>Poids (kg)</span>
-						<span>Calories brûlées (kCal)</span>
-					</div>
-				</WeightWidgetHeading>
-				<ResponsiveContainer width="100%" height="100%">
-					<BarChart
-						width={500}
-						height={300}
-						data={data}
-						margin={{
-							top: 20,
-							right: 0,
-							left: 0,
-							bottom: 5,
-						}}
-					>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="name" />
-						<YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-						<YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-						<Tooltip />
-						<Legend />
-						<Bar yAxisId="left" dataKey="pv" fill="#8884d8" />
-						<Bar yAxisId="right" dataKey="uv" fill="#82ca9d" />
-					</BarChart>
-				</ResponsiveContainer>
-			</WeightWidget>
-		);
+const Legend = styled.div`
+	font-size: 14px;
+	display: flex;
+	margin-right: 40px;
+	div {
+		display: flex;
+		&:not(:last-child) {
+			margin-right: 32px;
+		}
 	}
-}
+`;
+
+const LegendDot = styled.div`
+	align-self: center;
+	border-radius: 50%;
+	height: 8px;
+	width: 8px;
+	margin-right: 10px;
+	background-color: ${(props) => props.color};
+`;
+
+const ToolTipContainer = styled.div`
+	background-color: ${colors.biaxialGraphBarsColor2};
+	padding: 10px 0 10px 0;
+	height: 90.72px;
+	width: 56.16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	p {
+		font-size: 12px;
+		color: white;
+	}
+`;
 
 export default BiaxialBarChart;

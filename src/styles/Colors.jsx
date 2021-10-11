@@ -1,10 +1,12 @@
 const colors = {
 	navsBackgroundColor: '#020203',
-	graphPrimary: '#282D30',
-	graphSecondary: '#FF0000',
-	graphBarsColor: '#E60000',
-	mainTitleName: '#FF0101',
+	linearGraphBackgroundColor: '#FF0000',
+	radarGraphBackgroundColor: '#282D30',
+	biaxialGraphBarsColor2: '#E60000',
+	biaxialGraphBarsColor: '#282D30',
+	mainTitleNameColor: '#FF0101',
 	widgetsBackgroundColor: '#FBFBFB',
+	widgetsTextColor: '#74798C',
 	white: '#FFFFFF',
 	black: '#000000',
 };
