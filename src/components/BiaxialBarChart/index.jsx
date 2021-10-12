@@ -9,7 +9,7 @@ import colors from '../../styles/Colors';
 //Services
 import getUserActivity from '../../services/activity.js';
 
-function BiaxialBarChart() {
+function WeightBarChart() {
 	const idParams = useParams().id;
 	const [activity, setActivity] = useState();
 
@@ -133,4 +133,4 @@ const ToolTipContainer = styled.div`
 	}
 `;
 
-export default BiaxialBarChart;
+export default WeightBarChart;

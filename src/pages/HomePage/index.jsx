@@ -1,12 +1,14 @@
 //Components
 import MainTitle from '../../components/MainTitle';
-import BiaxialBarChart from '../../components/BiaxialBarChart';
+import WeightBarChart from '../../components/BiaxialBarChart';
+import DurationSessionsLineChart from '../../components/LineChart';
 
 function Home() {
 	return (
 		<main>
 			<MainTitle />
-			<BiaxialBarChart />
+			<WeightBarChart />
+			<DurationSessionsLineChart />
 		</main>
 	);
 }
