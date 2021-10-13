@@ -22,7 +22,7 @@ const Title = styled.div`
 `;
 
 const Name = styled.span`
-	color: ${colors.mainTitleNameColor};
+	color: ${colors.secondaryColor};
 `;
 
 function MainTitle() {

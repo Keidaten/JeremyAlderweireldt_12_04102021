@@ -2,6 +2,7 @@
 import MainTitle from '../../components/MainTitle';
 import WeightBarChart from '../../components/WeightBarChart';
 import DurationSessionsLineChart from '../../components/DurationSessionsLineChart';
+import PerformanceRadarChartWidget from '../../components/PerformanceRadarChart';
 
 function Home() {
 	return (
@@ -9,6 +10,7 @@ function Home() {
 			<MainTitle />
 			<WeightBarChart />
 			<DurationSessionsLineChart />
+			<PerformanceRadarChartWidget />
 		</main>
 	);
 }

@@ -4,7 +4,7 @@ const colors = {
 	radarGraphBackgroundColor: '#282D30',
 	biaxialGraphBarsColor2: '#E60000',
 	biaxialGraphBarsColor: '#282D30',
-	mainTitleNameColor: '#FF0101',
+	secondaryColor: '#FF0101',
 	widgetsBackgroundColor: '#FBFBFB',
 	widgetsTextColor: '#74798C',
 	white: '#FFFFFF',

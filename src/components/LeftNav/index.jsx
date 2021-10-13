@@ -14,7 +14,7 @@ const LeftNavBar = styled.div`
 	background-color: ${colors.navsBackgroundColor};
 	width: 117px;
 	height: 100%;
-	position: fixed;
+	position: absolute;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
