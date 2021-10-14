@@ -39,7 +39,7 @@ function ScoreRadialBarChart() {
 					<ResponsiveContainer height="100%" width="100%">
 						<RadialBarChart cx="50%" cy="50%" innerRadius={70} barSize={8} data={scoreFormatted} startAngle={-275} endAngle={95}>
 							<PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
-							<RadialBar dataKey="value" />
+							<RadialBar cornerRadius={20} dataKey="value" />
 						</RadialBarChart>
 					</ResponsiveContainer>
 					<ScoreInfo>

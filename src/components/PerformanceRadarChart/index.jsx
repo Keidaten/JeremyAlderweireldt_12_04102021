@@ -13,13 +13,13 @@ function PerformanceRadarChart() {
 	const idParams = useParams().id;
 
 	const [userPerformance, setUserPerformance] = useState();
-	const [isDataLoading, setDataLoading] = useState(false);
+	const [isDataFetched, setDataFetched] = useState(false);
 
 	useEffect(() => {
-		setDataLoading(true);
+		setDataFetched(false);
 		getUserPerformance(idParams).then((response) => {
 			setUserPerformance(response.data.data);
-			setDataLoading(false);
+			setDataFetched(true);
 		});
 	}, [idParams]);
 
@@ -52,14 +52,14 @@ function PerformanceRadarChart() {
 
 	return (
 		<PerformanceRadarChartWidget>
-			{isDataLoading ? (
-				'loading...'
-			) : (
+			{isDataFetched ? (
 				<RadarChart width={250} height={230} cx="50%" cy="55%" outerRadius="70%" data={userPerformance}>
 					<PolarGrid radialLines={false} />
 					<PolarAngleAxis dy={2} dataKey={kindNumberToKindString} tickLine={false} tick={{ fontSize: 11 }} stroke="white" />
-					<Radar name="Mike" dataKey="value" fill={colors.secondaryColor} fillOpacity={0.6} />
+					<Radar dataKey="value" fill={colors.secondaryColor} fillOpacity={0.6} />
 				</RadarChart>
+			) : (
+				'Loading...'
 			)}
 		</PerformanceRadarChartWidget>
 	);
