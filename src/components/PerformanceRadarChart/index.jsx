@@ -23,8 +23,6 @@ function PerformanceRadarChart() {
 		});
 	}, [idParams]);
 
-	console.log(userPerformance);
-
 	const kindNumberToKindString = ({ kind }) => {
 		let value = '';
 		switch (kind) {

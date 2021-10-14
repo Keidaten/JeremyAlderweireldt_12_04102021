@@ -32,7 +32,6 @@ function MainTitle() {
 	useEffect(() => {
 		getUser(idParams).then((response) => {
 			setUser(response.data.userInfos);
-			// console.log(response.data.userInfos.firstName);
 		});
 	}, [idParams]);
 
