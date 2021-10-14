@@ -20,6 +20,9 @@ function ScoreRadialBarChart() {
 		setDataLoading(true);
 		getUser(idParams).then((response) => {
 			setScore(response.data.todayScore);
+			if (response.data.todayScore === undefined) {
+				setScore(response.data.score);
+			}
 			setDataLoading(false);
 		});
 	}, [idParams]);
