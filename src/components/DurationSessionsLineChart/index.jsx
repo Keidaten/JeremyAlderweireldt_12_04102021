@@ -11,11 +11,15 @@ import getUserAverageSessions from '../../services/averageSession.js';
 
 function DurationSessionsLineChart() {
 	const idParams = useParams().id;
+
 	const [averageSession, setAverageSession] = useState();
+	const [isDataFetched, setDataFetched] = useState();
 
 	useEffect(() => {
+		setDataFetched(false);
 		getUserAverageSessions(idParams).then((response) => {
 			setAverageSession(response.data.sessions);
+			setDataFetched(true);
 		});
 	}, [idParams]);
 
@@ -63,33 +67,39 @@ function DurationSessionsLineChart() {
 
 	return (
 		<DurationSessionsWidget>
-			<DurationSessionWidgetHeading>Durée moyenne des sessions</DurationSessionWidgetHeading>
-			<ResponsiveContainer width="100%" height="100%">
-				<LineChart
-					width={500}
-					height={300}
-					data={averageSession}
-					margin={{
-						top: 5,
-						right: 30,
-						left: 20,
-						bottom: 5,
-					}}
-				>
-					<defs>
-						<linearGradient id="lineColor" x1="0%" y1="0%" x2="100%" y2="0%">
-							<stop offset="0%" stopColor="rgba(255, 255, 255, 0.33)" />
-							<stop offset="50%" stopColor="rgba(255, 255, 255, 0.66)" />
-							<stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
-						</linearGradient>
-					</defs>
-					<XAxis padding={{ left: -10, right: -10 }} dataKey={numberToDay} tick={{ fontSize: 12 }} stroke="rgba(255, 255, 255, 0.5)" axisLine={false} tickLine={false} />
-					<YAxis hide={true} domain={['dataMin -20', 'dataMax +60']} />
-					<Tooltip content={<CustomTooltip />} />
-					<Line stroke="url(#lineColor)" strokeWidth={2} type="natural" dot={false} activeDot={{ stroke: 'rgba(255, 255, 255, 0.3', strokeWidth: 5 }} dataKey="sessionLength" domain={['dataMin-4', 'dataMax+1']} />
-				</LineChart>
-			</ResponsiveContainer>
-			<Cover />
+			{isDataFetched ? (
+				<React.Fragment>
+					<DurationSessionWidgetHeading>Durée moyenne des sessions</DurationSessionWidgetHeading>
+					<ResponsiveContainer width="100%" height="100%">
+						<LineChart
+							width={500}
+							height={300}
+							data={averageSession}
+							margin={{
+								top: 5,
+								right: 30,
+								left: 20,
+								bottom: 5,
+							}}
+						>
+							<defs>
+								<linearGradient id="lineColor" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" stopColor="rgba(255, 255, 255, 0.33)" />
+									<stop offset="50%" stopColor="rgba(255, 255, 255, 0.66)" />
+									<stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
+								</linearGradient>
+							</defs>
+							<XAxis padding={{ left: -10, right: -10 }} dataKey={numberToDay} tick={{ fontSize: 12 }} stroke="rgba(255, 255, 255, 0.5)" axisLine={false} tickLine={false} />
+							<YAxis hide={true} domain={['dataMin -20', 'dataMax +60']} />
+							<Tooltip content={<CustomTooltip />} />
+							<Line stroke="url(#lineColor)" strokeWidth={2} type="natural" dot={false} activeDot={{ stroke: 'rgba(255, 255, 255, 0.3', strokeWidth: 5 }} dataKey="sessionLength" domain={['dataMin-4', 'dataMax+1']} />
+						</LineChart>
+					</ResponsiveContainer>
+					<Cover />
+				</React.Fragment>
+			) : (
+				'Loading...'
+			)}
 		</DurationSessionsWidget>
 	);
 }

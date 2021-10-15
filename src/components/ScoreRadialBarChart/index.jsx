@@ -14,16 +14,16 @@ function ScoreRadialBarChart() {
 	const idParams = useParams().id;
 
 	const [score, setScore] = useState();
-	const [isDataLoading, setDataLoading] = useState(false);
+	const [isDataFetched, setDataFetched] = useState();
 
 	useEffect(() => {
-		setDataLoading(true);
+		setDataFetched(false);
 		getUser(idParams).then((response) => {
 			setScore(response.data.todayScore);
 			if (response.data.todayScore === undefined) {
 				setScore(response.data.score);
 			}
-			setDataLoading(false);
+			setDataFetched(true);
 		});
 	}, [idParams]);
 
@@ -31,9 +31,7 @@ function ScoreRadialBarChart() {
 
 	return (
 		<ScoreRadialBarChartWidget>
-			{isDataLoading ? (
-				'loading...'
-			) : (
+			{isDataFetched ? (
 				<React.Fragment>
 					<ScoreRadialBarChartTitle>Score</ScoreRadialBarChartTitle>
 					<ResponsiveContainer height="100%" width="100%">
@@ -47,6 +45,8 @@ function ScoreRadialBarChart() {
 						<ScoreInfoText>de votre objectif</ScoreInfoText>
 					</ScoreInfo>
 				</React.Fragment>
+			) : (
+				'loading...'
 			)}
 		</ScoreRadialBarChartWidget>
 	);

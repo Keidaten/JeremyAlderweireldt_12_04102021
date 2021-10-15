@@ -13,7 +13,7 @@ function PerformanceRadarChart() {
 	const idParams = useParams().id;
 
 	const [userPerformance, setUserPerformance] = useState();
-	const [isDataFetched, setDataFetched] = useState(false);
+	const [isDataFetched, setDataFetched] = useState();
 
 	useEffect(() => {
 		setDataFetched(false);
