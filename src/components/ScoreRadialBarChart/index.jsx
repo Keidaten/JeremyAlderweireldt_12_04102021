@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import colors from '../../styles/Colors';
 
 function ScoreRadialBarChart({ user }) {
-	const scoreFormatted = [{ name: 'score', value: user.todayScore * 100, fill: colors.biaxialGraphBarsColor2 }];
+	const scoreFormatted = [{ name: 'score', value: user.todayScore === undefined ? user.score * 100 : user.todayScore * 100, fill: colors.biaxialGraphBarsColor2 }];
 
 	return (
 		<ScoreRadialBarChartWidget>

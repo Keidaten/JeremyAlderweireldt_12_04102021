@@ -21,7 +21,6 @@ function Home() {
 	const [performance, setPerformance] = useState();
 
 	useEffect(() => {
-		setUser(null);
 		getUserDatas(idParams).then((response) => {
 			setUser(response.data);
 		});
@@ -50,7 +49,7 @@ function Home() {
 					</HomeAnalytics>
 				</React.Fragment>
 			) : (
-				'Loading...'
+				`User ${idParams} doesn't exist`
 			)}
 		</main>
 	);

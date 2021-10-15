@@ -70,6 +70,9 @@ body {
 }
 main {
 	margin : 68px 90px 86px 224px;
+	@media screen and (max-width: 1200px) {
+		margin : 68px 90px 86px 180px;
+	}
 }
 `;
 
