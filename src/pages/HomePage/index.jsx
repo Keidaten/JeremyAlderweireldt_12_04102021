@@ -11,16 +11,28 @@ import ScoreRadialBarChart from '../../components/ScoreRadialBarChart';
 import KeyDataCardsSection from '../../components/KeyDataCardsSection';
 
 //Services
-import getUser from '../../services/user';
+import getUserDatas from '../../services/userDatas';
 
 function Home() {
 	const idParams = useParams().id;
 	const [user, setUser] = useState();
+	const [activity, setActivity] = useState();
+	const [sessions, setSessions] = useState();
+	const [performance, setPerformance] = useState();
 
 	useEffect(() => {
 		setUser(null);
-		getUser(idParams).then((response) => {
+		getUserDatas(idParams).then((response) => {
 			setUser(response.data);
+		});
+		getUserDatas(idParams, '/activity').then((response) => {
+			setActivity(response.data);
+		});
+		getUserDatas(idParams, '/average-sessions').then((response) => {
+			setSessions(response.data);
+		});
+		getUserDatas(idParams, '/performance').then((response) => {
+			setPerformance(response.data);
 		});
 	}, [idParams]);
 
@@ -29,12 +41,11 @@ function Home() {
 			{user ? (
 				<React.Fragment>
 					<HomeAnalytics>
-						<MainTitle />
-						<WeightBarChart />
-						<DurationSessionsLineChart />
-						<PerformanceRadarChartWidget />
-						<ScoreRadialBarChart />
-
+						<MainTitle user={user} />
+						{activity ? <WeightBarChart activity={activity} /> : 'loading...'}
+						{sessions ? <DurationSessionsLineChart sessions={sessions} /> : 'loading...'}
+						{performance ? <PerformanceRadarChartWidget performance={performance} /> : 'loading...'}
+						<ScoreRadialBarChart user={user} />
 						<KeyDataCardsSection user={user} />
 					</HomeAnalytics>
 				</React.Fragment>

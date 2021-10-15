@@ -1,28 +1,10 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 import styled from 'styled-components';
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
-
-//Services
-import getUserPerformance from '../../services/performance.js';
 
 //Styles
 import colors from '../../styles/Colors.jsx';
 
-function PerformanceRadarChart() {
-	const idParams = useParams().id;
-
-	const [userPerformance, setUserPerformance] = useState();
-	const [isDataFetched, setDataFetched] = useState();
-
-	useEffect(() => {
-		setDataFetched(false);
-		getUserPerformance(idParams).then((response) => {
-			setUserPerformance(response.data.data);
-			setDataFetched(true);
-		});
-	}, [idParams]);
-
+function PerformanceRadarChart({ performance }) {
 	const kindNumberToKindString = ({ kind }) => {
 		let value = '';
 		switch (kind) {
@@ -52,15 +34,11 @@ function PerformanceRadarChart() {
 
 	return (
 		<PerformanceRadarChartWidget>
-			{isDataFetched ? (
-				<RadarChart width={250} height={230} cx="50%" cy="55%" outerRadius="70%" data={userPerformance}>
-					<PolarGrid radialLines={false} />
-					<PolarAngleAxis dy={2} dataKey={kindNumberToKindString} tickLine={false} tick={{ fontSize: 11 }} stroke="white" />
-					<Radar dataKey="value" fill={colors.secondaryColor} fillOpacity={0.6} />
-				</RadarChart>
-			) : (
-				'Loading...'
-			)}
+			<RadarChart width={250} height={230} cx="50%" cy="55%" outerRadius="70%" data={performance.data}>
+				<PolarGrid radialLines={false} />
+				<PolarAngleAxis dy={2} dataKey={kindNumberToKindString} tickLine={false} tick={{ fontSize: 11 }} stroke="white" />
+				<Radar dataKey="value" fill={colors.secondaryColor} fillOpacity={0.6} />
+			</RadarChart>
 		</PerformanceRadarChartWidget>
 	);
 }

@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
-import { useParams } from 'react-router';
 
 //Styles
 import colors from '../../styles/Colors';
 
-//Services
-import getUserActivity from '../../services/activity.js';
-
-function WeightBarChart() {
-	const idParams = useParams().id;
-	const [activity, setActivity] = useState();
-	const [isDataFetched, setDataFetched] = useState();
-
-	useEffect(() => {
-		setDataFetched(false);
-		getUserActivity(idParams).then((response) => {
-			setActivity(response.data.sessions);
-			setDataFetched(true);
-		});
-	}, [idParams]);
-
+function WeightBarChart({ activity }) {
 	const CustomTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -44,46 +28,42 @@ function WeightBarChart() {
 
 	return (
 		<WeightWidget>
-			{isDataFetched ? (
-				<React.Fragment>
-					<WeightWidgetHeading>
-						<span>Activité quotidienne</span>
-						<Legend>
-							<div>
-								<LegendDot color={colors.biaxialGraphBarsColor2}></LegendDot>
-								<span>Poids (kg)</span>
-							</div>
-							<div>
-								<LegendDot color={colors.biaxialGraphBarsColor}></LegendDot>
-								<span>Calories brûlées (kCal)</span>
-							</div>
-						</Legend>
-					</WeightWidgetHeading>
-					<ResponsiveContainer width="100%" height="69.55%">
-						<BarChart
-							barGap={8}
-							data={activity}
-							margin={{
-								top: 20,
-								right: 0,
-								left: 0,
-								bottom: 5,
-							}}
-						>
-							<CartesianGrid strokeDasharray="3 3" vertical={false} />
-							<XAxis dy={15} dataKey="day" tickFormatter={formatXAxis} tickLine={false} tick={{ fontSize: 14 }} />
-							<YAxis dx={30} yAxisId="kilogram" orientation="right" tick={{ fontSize: 14 }} tickLine={false} axisLine={false} tickCount="3" domain={['dataMin-4', 'dataMax+1']} />
-							<YAxis yAxisId="calories" hide={true} domain={[0, 'dataMax +100']} />
-							<Tooltip separator="" content={<CustomTooltip />} />
-							{/* <Legend wrapperStyle={{ top: -16, fontSize: 14, color: colors.widgetsTextColor }} margin="500px" iconType="circle" verticalAlign="top" align="right" /> */}
-							<Bar barSize={7} radius={[50, 50, 0, 0]} name="Poids (kg)" yAxisId="kilogram" dataKey="kilogram" fill={colors.biaxialGraphBarsColor} />
-							<Bar barSize={7} radius={[50, 50, 0, 0]} name="Calories brûlées (kCal)" yAxisId="calories" dataKey="calories" fill={colors.biaxialGraphBarsColor2} />
-						</BarChart>
-					</ResponsiveContainer>
-				</React.Fragment>
-			) : (
-				'loading...'
-			)}
+			<React.Fragment>
+				<WeightWidgetHeading>
+					<span>Activité quotidienne</span>
+					<Legend>
+						<div>
+							<LegendDot color={colors.biaxialGraphBarsColor2}></LegendDot>
+							<span>Poids (kg)</span>
+						</div>
+						<div>
+							<LegendDot color={colors.biaxialGraphBarsColor}></LegendDot>
+							<span>Calories brûlées (kCal)</span>
+						</div>
+					</Legend>
+				</WeightWidgetHeading>
+				<ResponsiveContainer width="100%" height="69.55%">
+					<BarChart
+						barGap={8}
+						data={activity.sessions}
+						margin={{
+							top: 20,
+							right: 0,
+							left: 0,
+							bottom: 5,
+						}}
+					>
+						<CartesianGrid strokeDasharray="3 3" vertical={false} />
+						<XAxis dy={15} dataKey="day" tickFormatter={formatXAxis} tickLine={false} tick={{ fontSize: 14 }} />
+						<YAxis dx={30} yAxisId="kilogram" orientation="right" tick={{ fontSize: 14 }} tickLine={false} axisLine={false} tickCount="3" domain={['dataMin-4', 'dataMax+1']} />
+						<YAxis yAxisId="calories" hide={true} domain={[0, 'dataMax +100']} />
+						<Tooltip separator="" content={<CustomTooltip />} />
+						{/* <Legend wrapperStyle={{ top: -16, fontSize: 14, color: colors.widgetsTextColor }} margin="500px" iconType="circle" verticalAlign="top" align="right" /> */}
+						<Bar barSize={7} radius={[50, 50, 0, 0]} name="Poids (kg)" yAxisId="kilogram" dataKey="kilogram" fill={colors.biaxialGraphBarsColor} />
+						<Bar barSize={7} radius={[50, 50, 0, 0]} name="Calories brûlées (kCal)" yAxisId="calories" dataKey="calories" fill={colors.biaxialGraphBarsColor2} />
+					</BarChart>
+				</ResponsiveContainer>
+			</React.Fragment>
 		</WeightWidget>
 	);
 }

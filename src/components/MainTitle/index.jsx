@@ -1,30 +1,23 @@
 //React
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React from 'react';
 
 //Styles
 import colors from '../../styles/Colors';
 
-//Services
-import getUser from '../../services/user';
-
-function MainTitle() {
-	const idParams = useParams().id;
-	const [user, setUser] = useState([]);
-
-	useEffect(() => {
-		getUser(idParams).then((response) => {
-			setUser(response.data.userInfos);
-		});
-	}, [idParams]);
-
+function MainTitle({ user }) {
 	return (
 		<Title>
-			<h1>
-				Bonjour <Name>{user.firstName}</Name>
-			</h1>
-			<p>Félicitation ! Vous avez explosé vos objectif hier 👏</p>
+			{user ? (
+				<React.Fragment>
+					<h1>
+						Bonjour <Name>{user.userInfos.firstName}</Name>
+					</h1>
+					<p>Félicitation ! Vous avez explosé vos objectif hier 👏</p>
+				</React.Fragment>
+			) : (
+				'loading...'
+			)}
 		</Title>
 	);
 }

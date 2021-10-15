@@ -1,53 +1,28 @@
 import React from 'react';
 import { ResponsiveContainer, RadialBarChart, RadialBar, PolarAngleAxis } from 'recharts';
 import styled from 'styled-components';
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
 
 //Styles
 import colors from '../../styles/Colors';
 
-//Services
-import getUser from '../../services/user.js';
-
-function ScoreRadialBarChart() {
-	const idParams = useParams().id;
-
-	const [score, setScore] = useState();
-	const [isDataFetched, setDataFetched] = useState();
-
-	useEffect(() => {
-		setDataFetched(false);
-		getUser(idParams).then((response) => {
-			setScore(response.data.todayScore);
-			if (response.data.todayScore === undefined) {
-				setScore(response.data.score);
-			}
-			setDataFetched(true);
-		});
-	}, [idParams]);
-
-	const scoreFormatted = [{ name: 'score', value: score * 100, fill: colors.biaxialGraphBarsColor2 }];
+function ScoreRadialBarChart({ user }) {
+	const scoreFormatted = [{ name: 'score', value: user.todayScore * 100, fill: colors.biaxialGraphBarsColor2 }];
 
 	return (
 		<ScoreRadialBarChartWidget>
-			{isDataFetched ? (
-				<React.Fragment>
-					<ScoreRadialBarChartTitle>Score</ScoreRadialBarChartTitle>
-					<ResponsiveContainer height="100%" width="100%">
-						<RadialBarChart cx="50%" cy="50%" innerRadius={70} barSize={8} data={scoreFormatted} startAngle={-275} endAngle={95}>
-							<PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
-							<RadialBar cornerRadius={20} dataKey="value" />
-						</RadialBarChart>
-					</ResponsiveContainer>
-					<ScoreInfo>
-						<ScoreInfoNumber>{score * 100}%</ScoreInfoNumber>
-						<ScoreInfoText>de votre objectif</ScoreInfoText>
-					</ScoreInfo>
-				</React.Fragment>
-			) : (
-				'loading...'
-			)}
+			<React.Fragment>
+				<ScoreRadialBarChartTitle>Score</ScoreRadialBarChartTitle>
+				<ResponsiveContainer height="100%" width="100%">
+					<RadialBarChart cx="50%" cy="50%" innerRadius={70} barSize={8} data={scoreFormatted} startAngle={-275} endAngle={95}>
+						<PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+						<RadialBar cornerRadius={20} dataKey="value" />
+					</RadialBarChart>
+				</ResponsiveContainer>
+				<ScoreInfo>
+					<ScoreInfoNumber>{user.todayScore === undefined ? user.score * 100 : user.todayScore * 100}%</ScoreInfoNumber>
+					<ScoreInfoText>de votre objectif</ScoreInfoText>
+				</ScoreInfo>
+			</React.Fragment>
 		</ScoreRadialBarChartWidget>
 	);
 }
