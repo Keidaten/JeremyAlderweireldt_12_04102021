@@ -59,6 +59,9 @@ const ScoreRadialBarChartWidget = styled.div`
 	height: 263px;
 	background-color: ${colors.widgetsBackgroundColor};
 	position: relative;
+	border-radius: 5px;
+	grid-area: scoreBar;
+	justify-self: end;
 `;
 
 const ScoreRadialBarChartTitle = styled.span`

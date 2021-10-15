@@ -13,7 +13,9 @@ import colors from '../../styles/Colors';
 const LeftNavBar = styled.div`
 	background-color: ${colors.navsBackgroundColor};
 	width: 117px;
-	height: 100%;
+	z-index: -1;
+	top: 0px;
+	bottom: -500px;
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -24,7 +26,7 @@ const LeftNavLinks = styled.nav`
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	top: 20%;
+	top: 26%;
 	img {
 		margin: 10px;
 	}
@@ -35,7 +37,7 @@ const Copyright = styled.span`
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
 	position: relative;
-	top: 65%;
+	top: 59%;
 	font-size: 0.75rem;
 `;
 

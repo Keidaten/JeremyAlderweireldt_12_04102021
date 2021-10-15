@@ -90,6 +90,7 @@ function WeightBarChart() {
 
 //Style
 const WeightWidget = styled.div`
+	grid-area: weightBar;
 	height: 320px;
 	border-radius: 5px;
 	background-color: ${colors.widgetsBackgroundColor};

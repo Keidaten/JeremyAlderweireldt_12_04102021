@@ -20,12 +20,17 @@ function KeyDataCard({ src, alt, data, measureUnit, type }) {
 }
 
 const Card = styled.div`
+	border-radius: 5px;
 	background-color: ${colors.widgetsBackgroundColor};
 	height: 124px;
 	width: 258px;
-	margin: 10px;
 	display: flex;
 	align-items: center;
+	@media screen and (max-width: 1440px) {
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
 `;
 
 const Icon = styled.img`
@@ -33,6 +38,9 @@ const Icon = styled.img`
 	width: 60px;
 	margin-left: 32px;
 	margin-right: 24px;
+	@media screen and (max-width: 1440px) {
+		margin-right: 10px;
+	}
 `;
 
 const Infos = styled.div`

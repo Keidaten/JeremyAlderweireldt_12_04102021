@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import styled from 'styled-components';
 
 //Components
 import MainTitle from '../../components/MainTitle';
@@ -7,16 +8,10 @@ import WeightBarChart from '../../components/WeightBarChart';
 import DurationSessionsLineChart from '../../components/DurationSessionsLineChart';
 import PerformanceRadarChartWidget from '../../components/PerformanceRadarChart';
 import ScoreRadialBarChart from '../../components/ScoreRadialBarChart';
-import KeyDataCard from '../../components/KeyDataCard';
+import KeyDataCardsSection from '../../components/KeyDataCardsSection';
 
 //Services
 import getUser from '../../services/user';
-
-//Assets
-import caloriesIcon from '../../assets/caloriesIcon.png';
-import proteinIcon from '../../assets/proteinIcon.png';
-import carbsIcon from '../../assets/carbsIcon.png';
-import fatIcon from '../../assets/fatIcon.png';
 
 function Home() {
 	const idParams = useParams().id;
@@ -33,15 +28,15 @@ function Home() {
 		<main>
 			{user ? (
 				<React.Fragment>
-					<MainTitle />
-					<WeightBarChart />
-					<DurationSessionsLineChart />
-					<PerformanceRadarChartWidget />
-					<ScoreRadialBarChart />
-					<KeyDataCard src={caloriesIcon} alt="Icône flamme" data={user.keyData.calorieCount} type="Calories" measureUnit="kCal" />
-					<KeyDataCard src={proteinIcon} alt="Icône poulet" data={user.keyData.proteinCount} type="Protéines" measureUnit="g" />
-					<KeyDataCard src={carbsIcon} alt="Icône pomme" data={user.keyData.carbohydrateCount} type="Glucides" measureUnit="g" />
-					<KeyDataCard src={fatIcon} alt="Icône bruger" data={user.keyData.lipidCount} type="Lipides" measureUnit="g" />
+					<HomeAnalytics>
+						<MainTitle />
+						<WeightBarChart />
+						<DurationSessionsLineChart />
+						<PerformanceRadarChartWidget />
+						<ScoreRadialBarChart />
+
+						<KeyDataCardsSection user={user} />
+					</HomeAnalytics>
 				</React.Fragment>
 			) : (
 				'Loading...'
@@ -49,5 +44,28 @@ function Home() {
 		</main>
 	);
 }
+
+const HomeAnalytics = styled.section`
+	max-width: 1126px;
+	margin: auto;
+	display: grid;
+	row-gap: 26px;
+	column-gap: 30px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: auto 320px auto;
+	grid-template-areas:
+		'heading heading heading heading '
+		'weightBar weightBar weightBar foodCount'
+		'lineBar radarBar scoreBar foodCount';
+	@media screen and (max-width: 1440px) {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto 320px auto;
+		grid-template-areas:
+			'heading heading heading '
+			'weightBar weightBar weightBar '
+			'lineBar radarBar scoreBar '
+			'foodCount foodCount foodCount';
+	}
+`;
 
 export default Home;

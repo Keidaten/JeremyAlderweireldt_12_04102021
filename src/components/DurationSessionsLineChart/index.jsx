@@ -107,6 +107,7 @@ function DurationSessionsLineChart() {
 export default DurationSessionsLineChart;
 
 const DurationSessionsWidget = styled.div`
+	grid-area: lineBar;
 	width: 258px;
 	height: 263px;
 	background-color: ${colors.linearGraphBackgroundColor};

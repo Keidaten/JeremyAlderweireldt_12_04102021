@@ -66,6 +66,9 @@ function PerformanceRadarChart() {
 }
 
 const PerformanceRadarChartWidget = styled.div`
+	border-radius: 5px;
+	grid-area: radarBar;
+	justify-self: center;
 	width: 258px;
 	height: 263px;
 	background-color: ${colors.radarGraphBackgroundColor};

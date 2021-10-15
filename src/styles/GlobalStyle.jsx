@@ -62,14 +62,15 @@ table {
 }
 
 //Global
+html {
+}
 body {
     font-family: 'Roboto', sans-serif;
+	height: 100%;
 }
 main {
-	margin-left: 117px;
-	padding : 68px 90px 86px 107px;
+	margin : 68px 90px 86px 224px;
 }
-
 `;
 
 export default GlobalStyle;
