@@ -11,7 +11,14 @@ import proteinIcon from '../../assets/proteinIcon.png';
 import carbsIcon from '../../assets/carbsIcon.png';
 import fatIcon from '../../assets/fatIcon.png';
 
+/**
+ * Component who build macronutriments cards list
+ * @param {Object} user fetched user infos
+ * @param {Object} user.keyData datas about macronutriments
+ * @returns {Component} cards to display
+ */
 function KeyDataCardsSection({ user }) {
+	console.log(user);
 	return (
 		<KeyDataContainer>
 			<KeyDataCard src={caloriesIcon} alt="Icône flamme" data={user.keyData.calorieCount} type="Calories" measureUnit="kCal" />
@@ -28,7 +35,7 @@ KeyDataCardsSection.propTypes = {
 };
 
 //Component style
-const KeyDataContainer = styled.section`
+const KeyDataContainer = styled.ul`
 	grid-area: foodCount;
 	display: flex;
 	flex-direction: column;

@@ -5,6 +5,15 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors';
 
+/**
+ * Component who build macronutriments card
+ * @param {String} src image source
+ * @param {String} title alt text for image
+ * @param {Number} data data about user macronutriments
+ * @param {String} measureUnit unit of meaure for macronutriments
+ * @param {String} type the macronutriments name
+ * @returns {Component} card to display as li
+ */
 function KeyDataCard({ src, alt, data, measureUnit, type }) {
 	return (
 		<Card>
@@ -30,7 +39,7 @@ KeyDataCard.propTypes = {
 };
 
 //Component style
-const Card = styled.div`
+const Card = styled.li`
 	border-radius: 5px;
 	background-color: ${colors.widgetsBackgroundColor};
 	height: 124px;

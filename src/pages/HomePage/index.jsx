@@ -17,7 +17,7 @@ function Home() {
 	const idParams = useParams().id;
 	const [user, setUser] = useState();
 	const [activity, setActivity] = useState();
-	const [sessions, setSessions] = useState();
+	const [dataSessions, setSessions] = useState();
 	const [performance, setPerformance] = useState();
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ function Home() {
 					<HomeAnalytics>
 						<MainTitle user={user} />
 						{activity ? <WeightBarChart activity={activity} /> : 'loading...'}
-						{sessions ? <DurationSessionsLineChart sessions={sessions} /> : 'loading...'}
+						{dataSessions ? <DurationSessionsLineChart dataSessions={dataSessions} /> : 'loading...'}
 						{performance ? <PerformanceRadarChartWidget performance={performance} /> : 'loading...'}
 						<ScoreRadialBarChart user={user} />
 						<KeyDataCardsSection user={user} />

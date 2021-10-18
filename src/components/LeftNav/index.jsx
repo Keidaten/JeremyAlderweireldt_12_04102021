@@ -10,6 +10,10 @@ import dumbellIcon from '../../assets/dumbellIcon.png';
 //Style
 import colors from '../../styles/Colors';
 
+/**
+ * Component who build aside nav
+ * @returns {Component} aside nav to display
+ */
 function LeftNav() {
 	return (
 		<LeftNavBar>

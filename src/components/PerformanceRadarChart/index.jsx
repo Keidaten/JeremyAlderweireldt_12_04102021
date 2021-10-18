@@ -5,7 +5,20 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors.jsx';
 
+/**
+ * Component who build radar chart
+ * @param {Object} performance fetched user infos about performances
+ * @param {Object[]} performance.data user's personal infos
+ * @param {Number} performance.data[].value value of performance
+ * @param {Number} performance.data[].kind type of performance as number
+ * @returns {Component} radar to display
+ */
 function PerformanceRadarChart({ performance }) {
+	/**
+	 * Component who build radar chart
+	 * @param {Number} kind value of performance
+	 * @returns {String} number translated to performance type
+	 */
 	const kindNumberToKindString = ({ kind }) => {
 		let value = '';
 		switch (kind) {

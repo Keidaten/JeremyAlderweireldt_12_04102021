@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors';
 
+/**
+ * Component who build main title
+ * @param {Object} user fetched user infos
+ * @param {Number} user.todayScore user's score
+ * @returns {Component} radar chart to display
+ */
 function ScoreRadialBarChart({ user }) {
 	const scoreFormatted = [{ name: 'score', value: user.todayScore === undefined ? user.score * 100 : user.todayScore * 100, fill: colors.biaxialGraphBarsColor2 }];
 

@@ -7,6 +7,10 @@ import logo from '../../assets/logo.svg';
 //Style
 import colors from '../../styles/Colors';
 
+/**
+ * Header
+ * @returns {Component} main header
+ */
 function Header() {
 	return (
 		<TopNavBar>

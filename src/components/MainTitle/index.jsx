@@ -6,7 +6,14 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors';
 
+/**
+ * Component who build main title
+ * @param {Object} user fetched user infos
+ * @param {Object} user.userInfos user's personal infos
+ * @returns {Component} cards to display
+ */
 function MainTitle({ user }) {
+	console.log(user);
 	return (
 		<Title>
 			{user ? (

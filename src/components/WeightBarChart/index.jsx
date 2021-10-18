@@ -6,7 +6,22 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors';
 
+/**
+ * Component DurationSessionsLineChart
+ * @param {Object} activity object containing user activity
+ * @param {Object[]} activity.sessions
+ * @param {String} activity.sessions[].day date as string
+ * @param {Number} activity.sessions[].kilogram user weight
+ * @param {Number} activity.sessions[].calories user calories
+ * @returns {Component} bar chart to display
+ */
 function WeightBarChart({ activity }) {
+	/**
+	 * Custom barchart tooltip
+	 * @param {Boolean} active Tooltip status
+	 * @param {Object[]} payload Contain barchart datas (user weight and user calories)
+	 * @returns {Component} div with data to display
+	 */
 	const CustomTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -16,14 +31,18 @@ function WeightBarChart({ activity }) {
 				</ToolTipContainer>
 			);
 		}
-
 		return null;
 	};
 
+	/**
+	 * Custom tooltip of BarChart
+	 * @param {String} tick data datas
+	 * @returns {String} tick formatted as day date
+	 */
 	const formatXAxis = (tick) => {
+		console.log(tick);
 		tick = tick.toString();
 		tick = tick.slice(8);
-
 		return tick;
 	};
 

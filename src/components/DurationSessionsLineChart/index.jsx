@@ -6,7 +6,22 @@ import PropTypes from 'prop-types';
 //Styles
 import colors from '../../styles/Colors';
 
-function DurationSessionsLineChart({ sessions }) {
+/**
+ * Component DurationSessionsLineChart
+ * @param {Object} dataSessions object containing user's sessions
+ * @param {Object[]} dataSessions.sessions
+ * @param {Number} dataSessions.sessions[].day
+ * @param {Number} dataSessions.sessions[].sessionLength
+ * @param {Number} dataSessions.userId
+ * @returns {Component} div with data to display (sessionLength)
+ */
+function DurationSessionsLineChart({ dataSessions }) {
+	/**
+	 * Custom linechart tooltip
+	 * @param {Boolean} active Tooltip status
+	 * @param {Object[]} payload Contain linechart datas
+	 * @returns {Component} div with data to display (sessionLength)
+	 */
 	const CustomTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -19,6 +34,11 @@ function DurationSessionsLineChart({ sessions }) {
 		return null;
 	};
 
+	/**
+	 * Change the value on the xAxis
+	 * @param {Number} data (day) extracted from dataSessions.sessions
+	 * @returns {String} value to be displayed
+	 */
 	const numberToDay = ({ day }) => {
 		let value = '';
 		switch (day) {
@@ -57,7 +77,7 @@ function DurationSessionsLineChart({ sessions }) {
 					<LineChart
 						width={500}
 						height={300}
-						data={sessions.sessions}
+						data={dataSessions.sessions}
 						margin={{
 							top: 5,
 							right: 30,
@@ -86,7 +106,7 @@ function DurationSessionsLineChart({ sessions }) {
 
 //PropTypes
 DurationSessionsLineChart.propTypes = {
-	sessions: PropTypes.object.isRequired,
+	dataSessions: PropTypes.object.isRequired,
 };
 
 //Component style
