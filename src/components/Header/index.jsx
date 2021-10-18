@@ -7,6 +7,23 @@ import logo from '../../assets/logo.svg';
 //Style
 import colors from '../../styles/Colors';
 
+function Header() {
+	return (
+		<TopNavBar>
+			<Link to="/">
+				<img src={logo} className="App-logo" alt="logo" />
+			</Link>
+			<TopNavLinks>
+				<NavLink to="/">Accueil</NavLink>
+				<NavLink to="/">Profil</NavLink>
+				<NavLink to="/">Réglages</NavLink>
+				<NavLink to="/">Communauté</NavLink>
+			</TopNavLinks>
+		</TopNavBar>
+	);
+}
+
+//Component style
 const TopNavBar = styled.header`
 	height: 91px;
 	background-color: ${colors.navsBackgroundColor};
@@ -24,21 +41,5 @@ const TopNavLinks = styled.nav`
 		color: ${colors.white};
 	}
 `;
-
-function Header() {
-	return (
-		<TopNavBar>
-			<Link to="/">
-				<img src={logo} className="App-logo" alt="logo" />
-			</Link>
-			<TopNavLinks>
-				<NavLink to="/">Accueil</NavLink>
-				<NavLink to="/">Profil</NavLink>
-				<NavLink to="/">Réglages</NavLink>
-				<NavLink to="/">Communauté</NavLink>
-			</TopNavLinks>
-		</TopNavBar>
-	);
-}
 
 export default Header;

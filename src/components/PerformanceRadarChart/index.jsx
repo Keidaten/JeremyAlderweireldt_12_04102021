@@ -1,5 +1,6 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors.jsx';
@@ -43,6 +44,12 @@ function PerformanceRadarChart({ performance }) {
 	);
 }
 
+//PropTypes
+PerformanceRadarChart.propTypes = {
+	performance: PropTypes.object.isRequired,
+};
+
+//Component style
 const PerformanceRadarChartWidget = styled.div`
 	border-radius: 5px;
 	grid-area: radarBar;

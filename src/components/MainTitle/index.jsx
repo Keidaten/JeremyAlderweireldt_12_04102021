@@ -1,6 +1,7 @@
 //React
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors';
@@ -22,6 +23,12 @@ function MainTitle({ user }) {
 	);
 }
 
+//PropTypes
+MainTitle.propTypes = {
+	user: PropTypes.object.isRequired,
+};
+
+//Component style
 const Title = styled.section`
 	margin-bottom: 4.8125rem;
 	grid-area: heading;

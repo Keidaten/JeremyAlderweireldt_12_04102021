@@ -1,5 +1,6 @@
 //React
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Components
 import KeyDataCard from '../KeyDataCard';
@@ -21,6 +22,12 @@ function KeyDataCardsSection({ user }) {
 	);
 }
 
+//PropTypes
+KeyDataCardsSection.propTypes = {
+	user: PropTypes.object.isRequired,
+};
+
+//Component style
 const KeyDataContainer = styled.section`
 	grid-area: foodCount;
 	display: flex;

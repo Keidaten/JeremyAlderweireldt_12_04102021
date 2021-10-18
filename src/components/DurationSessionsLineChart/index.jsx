@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors';
@@ -83,8 +84,12 @@ function DurationSessionsLineChart({ sessions }) {
 	);
 }
 
-export default DurationSessionsLineChart;
+//PropTypes
+DurationSessionsLineChart.propTypes = {
+	sessions: PropTypes.object.isRequired,
+};
 
+//Component style
 const DurationSessionsWidget = styled.div`
 	grid-area: lineBar;
 	width: 258px;
@@ -122,3 +127,5 @@ const ToolTipContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 `;
+
+export default DurationSessionsLineChart;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors';
@@ -68,7 +69,12 @@ function WeightBarChart({ activity }) {
 	);
 }
 
-//Style
+//PropTypes
+WeightBarChart.propTypes = {
+	activity: PropTypes.object.isRequired,
+};
+
+//Component style
 const WeightWidget = styled.div`
 	grid-area: weightBar;
 	height: 320px;

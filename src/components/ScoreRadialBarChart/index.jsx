@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, RadialBarChart, RadialBar, PolarAngleAxis } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors';
@@ -27,8 +28,12 @@ function ScoreRadialBarChart({ user }) {
 	);
 }
 
-export default ScoreRadialBarChart;
+//PropTypes
+ScoreRadialBarChart.propTypes = {
+	user: PropTypes.object.isRequired,
+};
 
+//Component style
 const ScoreRadialBarChartWidget = styled.div`
 	width: 258px;
 	height: 263px;
@@ -68,3 +73,5 @@ const ScoreInfoText = styled.span`
 	font-size: 16px;
 	color: ${colors.widgetsTextColor};
 `;
+
+export default ScoreRadialBarChart;

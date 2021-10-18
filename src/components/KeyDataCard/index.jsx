@@ -1,5 +1,6 @@
 //React
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 //Styles
 import colors from '../../styles/Colors';
@@ -19,6 +20,16 @@ function KeyDataCard({ src, alt, data, measureUnit, type }) {
 	);
 }
 
+//PropTypes
+KeyDataCard.propTypes = {
+	src: PropTypes.string.isRequired,
+	alt: PropTypes.string,
+	data: PropTypes.number.isRequired,
+	measureUnit: PropTypes.string,
+	type: PropTypes.string,
+};
+
+//Component style
 const Card = styled.div`
 	border-radius: 5px;
 	background-color: ${colors.widgetsBackgroundColor};

@@ -10,6 +10,29 @@ import dumbellIcon from '../../assets/dumbellIcon.png';
 //Style
 import colors from '../../styles/Colors';
 
+function LeftNav() {
+	return (
+		<LeftNavBar>
+			<LeftNavLinks>
+				<NavLink to="/">
+					<img src={meditationIcon} alt="" />
+				</NavLink>
+				<NavLink to="/">
+					<img src={swimIcon} alt="" />
+				</NavLink>
+				<NavLink to="/">
+					<img src={cyclingIcon} alt="" />
+				</NavLink>
+				<NavLink to="/">
+					<img src={dumbellIcon} alt="" />
+				</NavLink>
+			</LeftNavLinks>
+			<Copyright>Copyright, SportSee 2020</Copyright>
+		</LeftNavBar>
+	);
+}
+
+//Component style
 const LeftNavBar = styled.div`
 	background-color: ${colors.navsBackgroundColor};
 	width: 117px;
@@ -40,27 +63,5 @@ const Copyright = styled.span`
 	top: 59%;
 	font-size: 0.75rem;
 `;
-
-function LeftNav() {
-	return (
-		<LeftNavBar>
-			<LeftNavLinks>
-				<NavLink to="/">
-					<img src={meditationIcon} alt="" />
-				</NavLink>
-				<NavLink to="/">
-					<img src={swimIcon} alt="" />
-				</NavLink>
-				<NavLink to="/">
-					<img src={cyclingIcon} alt="" />
-				</NavLink>
-				<NavLink to="/">
-					<img src={dumbellIcon} alt="" />
-				</NavLink>
-			</LeftNavLinks>
-			<Copyright>Copyright, SportSee 2020</Copyright>
-		</LeftNavBar>
-	);
-}
 
 export default LeftNav;
