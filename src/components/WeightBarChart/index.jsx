@@ -40,9 +40,7 @@ function WeightBarChart({ activity }) {
 	 * @returns {String} tick formatted as day date
 	 */
 	const formatXAxis = (tick) => {
-		console.log(tick);
-		tick = tick.toString();
-		tick = tick.slice(8);
+		tick = tick.slice(9);
 		return tick;
 	};
 
@@ -64,8 +62,8 @@ function WeightBarChart({ activity }) {
 				</WeightWidgetHeading>
 				<ResponsiveContainer width="100%" height="69.55%">
 					<BarChart
-						barGap={8}
 						data={activity.sessions}
+						barGap={8}
 						margin={{
 							top: 20,
 							right: 0,
@@ -74,13 +72,12 @@ function WeightBarChart({ activity }) {
 						}}
 					>
 						<CartesianGrid strokeDasharray="3 3" vertical={false} />
-						<XAxis dy={15} dataKey="day" tickFormatter={formatXAxis} tickLine={false} tick={{ fontSize: 14 }} />
+						<XAxis dataKey="day" dy={15} tickFormatter={formatXAxis} tickLine={false} tick={{ fontSize: 14 }} />
 						<YAxis dx={30} yAxisId="kilogram" orientation="right" tick={{ fontSize: 14 }} tickLine={false} axisLine={false} tickCount="3" domain={['dataMin-4', 'dataMax+1']} />
 						<YAxis yAxisId="calories" hide={true} domain={[0, 'dataMax +100']} />
 						<Tooltip separator="" content={<CustomTooltip />} />
-						{/* <Legend wrapperStyle={{ top: -16, fontSize: 14, color: colors.widgetsTextColor }} margin="500px" iconType="circle" verticalAlign="top" align="right" /> */}
-						<Bar barSize={7} radius={[50, 50, 0, 0]} name="Poids (kg)" yAxisId="kilogram" dataKey="kilogram" fill={colors.biaxialGraphBarsColor} />
-						<Bar barSize={7} radius={[50, 50, 0, 0]} name="Calories brûlées (kCal)" yAxisId="calories" dataKey="calories" fill={colors.biaxialGraphBarsColor2} />
+						<Bar dataKey="kilogram" barSize={7} radius={[50, 50, 0, 0]} name="Poids (kg)" yAxisId="kilogram" fill={colors.biaxialGraphBarsColor} />
+						<Bar dataKey="calories" barSize={7} radius={[50, 50, 0, 0]} name="Calories brûlées (kCal)" yAxisId="calories" fill={colors.biaxialGraphBarsColor2} />
 					</BarChart>
 				</ResponsiveContainer>
 			</React.Fragment>

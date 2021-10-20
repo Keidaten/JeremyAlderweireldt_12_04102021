@@ -18,7 +18,6 @@ import fatIcon from '../../assets/fatIcon.png';
  * @returns {Component} cards to display
  */
 function KeyDataCardsSection({ user }) {
-	console.log(user);
 	return (
 		<KeyDataContainer>
 			<KeyDataCard src={caloriesIcon} alt="Icône flamme" data={user.keyData.calorieCount} type="Calories" measureUnit="kCal" />

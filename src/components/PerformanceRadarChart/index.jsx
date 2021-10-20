@@ -48,9 +48,9 @@ function PerformanceRadarChart({ performance }) {
 
 	return (
 		<PerformanceRadarChartWidget>
-			<RadarChart width={250} height={230} cx="50%" cy="55%" outerRadius="70%" data={performance.data}>
+			<RadarChart data={performance.data} width={250} height={230} cx="50%" cy="55%" outerRadius="70%">
 				<PolarGrid radialLines={false} />
-				<PolarAngleAxis dy={2} dataKey={kindNumberToKindString} tickLine={false} tick={{ fontSize: 11 }} stroke="white" />
+				<PolarAngleAxis dataKey={kindNumberToKindString} dy={2} tickLine={false} tick={{ fontSize: 11 }} stroke="white" />
 				<Radar dataKey="value" fill={colors.secondaryColor} fillOpacity={0.6} />
 			</RadarChart>
 		</PerformanceRadarChartWidget>

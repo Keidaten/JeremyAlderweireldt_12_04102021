@@ -13,7 +13,6 @@ import colors from '../../styles/Colors';
  * @returns {Component} cards to display
  */
 function MainTitle({ user }) {
-	console.log(user);
 	return (
 		<Title>
 			{user ? (

@@ -4,7 +4,7 @@ Build an analytics dashboard with React.
 
 # This project runs using an API &#8595;
 
-Follow the instructions provided here to run the API : [SportSee API](https://github.com/Alphasud/P9-front-end-dashboard)
+Follow the instructions provided here to run the API : [SportSee API](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
 
 Once the API is running, you can [run](#3.-Install-and-run-the-project) the project
 

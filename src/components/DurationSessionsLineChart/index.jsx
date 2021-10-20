@@ -92,13 +92,13 @@ function DurationSessionsLineChart({ dataSessions }) {
 								<stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
 							</linearGradient>
 						</defs>
-						<XAxis padding={{ left: -10, right: -10 }} dataKey={numberToDay} tick={{ fontSize: 12 }} stroke="rgba(255, 255, 255, 0.5)" axisLine={false} tickLine={false} />
+						<XAxis dataKey={numberToDay} padding={{ left: -10, right: -10 }} tick={{ fontSize: 12 }} stroke="rgba(255, 255, 255, 0.5)" axisLine={false} tickLine={false} />
 						<YAxis hide={true} domain={['dataMin -20', 'dataMax +60']} />
 						<Tooltip content={<CustomTooltip />} />
-						<Line stroke="url(#lineColor)" strokeWidth={2} type="natural" dot={false} activeDot={{ stroke: 'rgba(255, 255, 255, 0.3', strokeWidth: 5 }} dataKey="sessionLength" domain={['dataMin-4', 'dataMax+1']} />
+						<Line dataKey="sessionLength" stroke="url(#lineColor)" z-index={99} strokeWidth={2} type="natural" dot={false} activeDot={{ stroke: 'rgba(255, 255, 255, 0.3', strokeWidth: 5 }} domain={['dataMin-4', 'dataMax+1']} />
 					</LineChart>
 				</ResponsiveContainer>
-				<Cover />
+				{/* <Cover /> */}
 			</React.Fragment>
 		</DurationSessionsWidget>
 	);
@@ -118,6 +118,7 @@ const DurationSessionsWidget = styled.div`
 	border-radius: 5px;
 	position: relative;
 	padding: 30px 0 10px 0;
+	box-shadow: inset -77px 0px 0px 0px rgba(0, 0, 0, 0.1);
 `;
 
 const DurationSessionWidgetHeading = styled.p`
@@ -126,16 +127,6 @@ const DurationSessionWidgetHeading = styled.p`
 	opacity: 0.5;
 	margin: 0 76px 0 34px;
 	position: absolute;
-`;
-
-const Cover = styled.div`
-	background-color: black;
-	opacity: 0.1;
-	width: 30.625%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	right: 0px;
 `;
 
 const ToolTipContainer = styled.div`
