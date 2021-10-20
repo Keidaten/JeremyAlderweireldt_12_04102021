@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 //Pages
-import HomePage from './pages/HomePage';
+import UserProfilePage from './pages/UserProfilePage';
 
 //Components
 import Header from './components/Header';
@@ -17,7 +17,7 @@ function App() {
 			<Header />
 			<LeftNav />
 			<Switch>
-				<Route exact path="/:id" component={HomePage}></Route>
+				<Route exact path="/:id" component={UserProfilePage}></Route>
 				<Redirect to="/12" />
 			</Switch>
 		</Router>

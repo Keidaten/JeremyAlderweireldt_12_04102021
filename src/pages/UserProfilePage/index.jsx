@@ -13,7 +13,7 @@ import KeyDataCardsSection from '../../components/KeyDataCardsSection';
 //Services
 import getUserDatas from '../../services/userDatas';
 
-function Home() {
+function UserProfilePage() {
 	const idParams = useParams().id;
 	const [user, setUser] = useState();
 	const [activity, setActivity] = useState();
@@ -78,4 +78,4 @@ const HomeAnalytics = styled.section`
 	}
 `;
 
-export default Home;
+export default UserProfilePage;
